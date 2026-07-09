@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Home — MeridianConnect{% endblock %}
+{% block content %}
+<div class="card">
+  <div class="card-header">
+    <h1>Welcome, {{ user['full_name'] }} <span class="badge {{ user['role'] }}">{{ user['role'] }}</span></h1>
+  </div>
+  <p class="muted" style="margin-bottom:0;">{{ user['department'] }} &middot; {{ user['email'] }}</p>
+</div>
+
+<div class="stat-grid" style="margin-bottom:20px;">
+  <div class="stat-box"><div class="stat-num">18</div><div class="stat-label">Annual Leave Balance</div></div>
+  <div class="stat-box"><div class="stat-num">3</div><div class="stat-label">Payslips Available</div></div>
+  <div class="stat-box"><div class="stat-num">4</div><div class="stat-label">Company Documents</div></div>
+</div>
+
+<div class="card">
+  <h2>Quick Access</h2>
+  <div class="tool-grid">
+    <a class="tool-card" href="/directory">
+      <div class="tool-title">Staff Directory</div>
+      <div class="tool-desc">Look up staff contact information by name or department</div>
+    </a>
+    <a class="tool-card" href="/docs">
+      <div class="tool-title">Documents &amp; Policies</div>
+      <div class="tool-desc">Employee handbook, leave policy, and IT policy</div>
+    </a>
+    <a class="tool-card" href="/payslip/{{ user['id'] }}">
+      <div class="tool-title">Latest Payslip</div>
+      <div class="tool-desc">View your current month's payslip</div>
+    </a>
+    <a class="tool-card" href="/profile">
+      <div class="tool-title">My Profile</div>
+      <div class="tool-desc">Update your personal information and profile picture</div>
+    </a>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Announcements</h2>
+  <p>MeridianConnect has been upgraded. Please update your profile and review
+  the updated Leave Policy under the Documents &amp; Policies menu.</p>
+  <p class="muted" style="margin-bottom:0;">Posted by: Human Resources</p>
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Network Diagnostics — MeridianConnect{% endblock %}
+{% block content %}
+<div class="breadcrumb"><a href="/admin">System Administration</a> &raquo; Network Diagnostics</div>
+<div class="card">
+  <div class="card-header">
+    <h1>Network Diagnostics</h1>
+  </div>
+  <p class="page-lead">Test server connectivity (ping) to a specified host.</p>
+  <form method="POST">
+    <label>Host Address</label>
+    <input type="text" name="host" placeholder="e.g. 8.8.8.8">
+    <button class="btn" type="submit">Run Ping</button>
+  </form>
+  {% if output %}
+    <h3>Result</h3>
+    <div class="mono">{{ output }}</div>
+  {% endif %}
+</div>
+{% endblock %}

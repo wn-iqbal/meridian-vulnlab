@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Bulk Employee Import — MeridianConnect{% endblock %}
+{% block content %}
+<div class="breadcrumb"><a href="/admin">System Administration</a> &raquo; Bulk Employee Import</div>
+<div class="card">
+  <div class="card-header">
+    <h1>Bulk Employee Import (XML)</h1>
+  </div>
+  <p class="page-lead">Upload an XML file containing a staff list for bulk import into the system.</p>
+  <form method="POST" enctype="multipart/form-data">
+    <label>XML File</label>
+    <input type="file" name="xmlfile" accept=".xml">
+    <button class="btn" type="submit">Import</button>
+  </form>
+  <h3>Example Format</h3>
+  <div class="mono">&lt;employees&gt;
+  &lt;employee&gt;&lt;name&gt;John Tan&lt;/name&gt;&lt;/employee&gt;
+&lt;/employees&gt;</div>
+  {% if result %}
+    <h3>Import Result</h3>
+    <div class="mono">{{ result }}</div>
+  {% endif %}
+</div>
+{% endblock %}

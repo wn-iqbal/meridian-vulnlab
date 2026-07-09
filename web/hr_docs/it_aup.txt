@@ -1,0 +1,8 @@
+MERIDIAN TALENT GROUP
+IT Acceptable Use Policy
+=======================================================
+
+- Do not share your password with anyone.
+- Report phishing emails to security.it@meridiantalent.com
+- VPN is required for remote access to internal systems.
+- All access to the Staff Portal is logged for audit purposes.

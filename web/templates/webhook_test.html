@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Integration URL Tester — MeridianConnect{% endblock %}
+{% block content %}
+<div class="breadcrumb"><a href="/admin">System Administration</a> &raquo; Integration URL Tester</div>
+<div class="card">
+  <div class="card-header">
+    <h1>Webhook / Integration URL Tester</h1>
+  </div>
+  <p class="page-lead">Enter a URL to verify Meridian's servers can reach your
+  integration endpoint.</p>
+  <form method="POST">
+    <label>Integration URL</label>
+    <input type="text" name="url" placeholder="https://example.com/webhook">
+    <button class="btn" type="submit">Test Connection</button>
+  </form>
+  {% if result %}
+    <h3>Result</h3>
+    <div class="mono">{{ result }}</div>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}MeridianConnect — Staff Portal{% endblock %}
+{% block content %}
+<div class="card">
+  <div class="card-header">
+    <h1>Welcome to MeridianConnect</h1>
+  </div>
+  <p class="page-lead">
+    MeridianConnect is the official internal staff portal of Meridian Talent
+    Group &mdash; your one-stop system for payslips, staff directory,
+    company documents and policies, and personal profile management.
+  </p>
+  {% if not user %}
+  <div class="btn-row">
+    <a class="btn" href="/login">Log In</a>
+    <a class="btn secondary" href="/register">Create Account</a>
+  </div>
+  {% else %}
+  <div class="btn-row">
+    <a class="btn" href="/dashboard">Go to Dashboard</a>
+  </div>
+  {% endif %}
+</div>
+
+<div class="card">
+  <h2>Notice</h2>
+  <p>MeridianConnect now supports self-service profile updates and profile
+  picture uploads. Please ensure your personal information is kept up to
+  date under <em>My Profile</em>.</p>
+  <p class="muted" style="margin-bottom:0;">For access issues, contact the IT Service Desk at
+  1-800-22-5100 or helpdesk@meridiantalent.com</p>
+</div>
+{% endblock %}

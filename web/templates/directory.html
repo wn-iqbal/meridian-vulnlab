@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Staff Directory — MeridianConnect{% endblock %}
+{% block content %}
+<div class="card">
+  <div class="card-header">
+    <h1>Staff Directory</h1>
+  </div>
+  <p class="page-lead">Search for staff by name or department.</p>
+  <form method="GET" style="display:flex;gap:10px;align-items:flex-start;">
+    <div style="flex:1;">
+      <input type="text" name="q" placeholder="e.g. Tan Mei Ling, Finance..." value="{{ q }}" style="margin-bottom:0;">
+    </div>
+    <button class="btn" type="submit">Search</button>
+  </form>
+  {% if q %}
+    <p class="field-hint" style="margin-top:10px;">Showing results for: <em>{{ q|safe }}</em></p>
+  {% endif %}
+  {% if db_error %}
+    <div class="alert error">Database error: {{ db_error }}</div>
+  {% endif %}
+</div>
+
+<div class="card">
+  <table class="striped">
+    <tr><th>Name</th><th>Department</th><th>Email</th><th></th></tr>
+    {% for e in results %}
+    <tr>
+      <td><img class="avatar" src="{{ e['avatar'] }}" onerror="this.style.display='none'"> {{ e['full_name'] }}</td>
+      <td>{{ e['department'] }}</td>
+      <td>{{ e['email'] }}</td>
+      <td><a href="/employee/{{ e['id'] }}" class="btn secondary small">View Profile</a></td>
+    </tr>
+    {% else %}
+    <tr><td colspan="4" class="muted">No results found.</td></tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

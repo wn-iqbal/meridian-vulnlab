@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}{{ emp['full_name'] }} — MeridianConnect{% endblock %}
+{% block content %}
+<div class="breadcrumb"><a href="/directory">Staff Directory</a> &raquo; {{ emp['full_name'] }}</div>
+<div class="card">
+  <div style="display:flex;gap:18px;align-items:center;margin-bottom:16px;">
+    <img class="avatar" src="{{ emp['avatar'] }}" style="width:72px;height:72px;">
+    <div>
+      <h1 style="margin-bottom:4px;">{{ emp['full_name'] }} <span class="badge {{ emp['role'] }}">{{ emp['role'] }}</span></h1>
+      <p class="muted" style="margin-bottom:0;">{{ emp['department'] }} &middot; {{ emp['email'] }}</p>
+    </div>
+  </div>
+  <h3>Bio</h3>
+  <div class="mono">{{ emp['bio']|safe }}</div>
+</div>
+{% endblock %}

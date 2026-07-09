@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Payslip — MeridianConnect{% endblock %}
+{% block content %}
+<div class="breadcrumb"><a href="/dashboard">Home</a> &raquo; Payslip #{{ payslip['id'] }}</div>
+<div class="card">
+  <div class="card-header">
+    <h1>Payslip</h1>
+  </div>
+  <table style="margin-bottom:18px;">
+    <tr><th style="width:180px;">Employee Name</th><td>{{ owner['full_name'] if owner else 'Unknown' }}</td></tr>
+    <tr><th>Email</th><td>{{ owner['email'] if owner else '-' }}</td></tr>
+    <tr><th>Pay Period</th><td>{{ payslip['period'] }}</td></tr>
+  </table>
+  <table>
+    <tr><th style="width:180px;">Gross Pay</th><td>RM {{ '%.2f'|format(payslip['gross']) }}</td></tr>
+    <tr><th>Net Pay</th><td>RM {{ '%.2f'|format(payslip['net']) }}</td></tr>
+  </table>
+  <h3>Notes</h3>
+  <p class="mono">{{ payslip['notes'] }}</p>
+</div>
+{% endblock %}

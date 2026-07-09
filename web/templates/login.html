@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Log In — MeridianConnect{% endblock %}
+{% block content %}
+<div class="card form-narrow">
+  <div class="card-header">
+    <h1>Staff Log In</h1>
+  </div>
+  {% if error %}<div class="alert error">{{ error }}</div>{% endif %}
+  {% if request.args.get('registered') %}<div class="alert success">Registration successful. Please log in.</div>{% endif %}
+  {% if request.args.get('reset') %}<div class="alert success">Password has been reset. Please log in.</div>{% endif %}
+  <form method="POST">
+    <label>User ID / Email</label>
+    <input type="text" name="email" autocomplete="off" required>
+    <label>Password</label>
+    <input type="password" name="password" required>
+    <button class="btn" type="submit" style="width:100%;">Log In</button>
+  </form>
+  <p class="field-hint" style="margin-top:16px;text-align:center;">
+    <a href="/forgot-password">Forgot your password?</a> &middot; <a href="/register">Create a new account</a>
+  </p>
+</div>
+{% endblock %}

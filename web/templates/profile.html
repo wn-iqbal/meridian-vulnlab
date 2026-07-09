@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}My Profile — MeridianConnect{% endblock %}
+{% block content %}
+<div class="card">
+  <div class="card-header">
+    <h1>My Profile</h1>
+  </div>
+  {% if request.args.get('saved') %}<div class="alert success">Profile updated.</div>{% endif %}
+  <form method="POST">
+    <label>Full Name</label>
+    <input type="text" name="full_name" value="{{ user['full_name'] }}">
+    <label>Bio</label>
+    <textarea name="bio" rows="3">{{ user['bio'] }}</textarea>
+    <button class="btn" type="submit">Save Changes</button>
+  </form>
+</div>
+
+<div class="card">
+  <h2>Profile Picture</h2>
+  <div style="display:flex;align-items:center;gap:16px;margin-bottom:14px;">
+    <img class="avatar" src="{{ user['avatar'] }}" style="width:64px;height:64px;">
+  </div>
+  <form method="POST" action="/profile/avatar" enctype="multipart/form-data">
+    <input type="file" name="avatar">
+    <button class="btn secondary" type="submit">Upload Picture</button>
+  </form>
+</div>
+
+<div class="card">
+  <h2>Account Information</h2>
+  <table>
+    <tr><th style="width:180px;">Email</th><td>{{ user['email'] }}</td></tr>
+    <tr><th>Role</th><td><span class="badge {{ user['role'] }}">{{ user['role'] }}</span></td></tr>
+    <tr><th>Department</th><td>{{ user['department'] }}</td></tr>
+  </table>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Register — MeridianConnect{% endblock %}
+{% block content %}
+<div class="card form-narrow">
+  <div class="card-header">
+    <h1>Staff Account Registration</h1>
+  </div>
+  {% if error %}<div class="alert error">{{ error }}</div>{% endif %}
+  <form method="POST">
+    <label>Full Name</label>
+    <input type="text" name="full_name" required>
+    <label>Company Email</label>
+    <input type="email" name="email" required>
+    <div class="field-hint">Use the format name@meridiantalent.com where possible.</div>
+    <label>Password</label>
+    <input type="password" name="password" required>
+    <button class="btn" type="submit" style="width:100%;">Register</button>
+  </form>
+  <p class="field-hint" style="margin-top:16px;text-align:center;">
+    Already have an account? <a href="/login">Log in here</a>
+  </p>
+</div>
+{% endblock %}

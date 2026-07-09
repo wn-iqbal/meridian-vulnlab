@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}System Administration — MeridianConnect{% endblock %}
+{% block content %}
+<div class="card">
+  <div class="card-header">
+    <h1>System Administration Panel</h1>
+  </div>
+  <p class="page-lead">Manage staff records, documents, and internal system tools.</p>
+  <div class="tool-grid">
+    <a class="tool-card" href="/admin/network-tool">
+      <div class="tool-title">Network Diagnostics</div>
+      <div class="tool-desc">Test server connectivity to a network host</div>
+    </a>
+    <a class="tool-card" href="/admin/webhook-test">
+      <div class="tool-title">Integration URL Tester</div>
+      <div class="tool-desc">Verify the server can reach an external webhook URL</div>
+    </a>
+    <a class="tool-card" href="/admin/import-employees">
+      <div class="tool-title">Bulk Employee Import (XML)</div>
+      <div class="tool-desc">Upload a staff list in XML format</div>
+    </a>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Staff List ({{ employees|length }})</h2>
+  <table class="striped">
+    <tr><th>ID</th><th>Name</th><th>Email</th><th>Role</th><th>Salary (RM)</th><th>ID No.</th><th></th></tr>
+    {% for e in employees %}
+    <tr>
+      <td>{{ e['id'] }}</td>
+      <td>{{ e['full_name'] }}</td>
+      <td>{{ e['email'] }}</td>
+      <td><span class="badge {{ e['role'] }}">{{ e['role'] }}</span></td>
+      <td>{{ e['salary'] }}</td>
+      <td>{{ e['ssn'] }}</td>
+      <td><a href="/admin/give-admin?target={{ e['id'] }}" class="btn danger small">Make Admin</a></td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+
+<div class="card">
+  <h2>Recent Audit Log</h2>
+  <table class="striped">
+    <tr><th>Time</th><th>User</th><th>Action</th></tr>
+    {% for l in logs %}
+    <tr><td>{{ l['ts'] }}</td><td>{{ l['actor'] }}</td><td>{{ l['action'] }}</td></tr>
+    {% else %}
+    <tr><td colspan="3" class="muted">No log entries recorded.</td></tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

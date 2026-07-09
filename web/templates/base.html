@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}MeridianConnect — Staff Portal{% endblock %}</title>
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="top-bar-inner">
+    <span>Official Staff Portal &mdash; Meridian Talent Group</span>
+    <span class="top-bar-right">
+      IT Service Desk: 1-800-22-5100
+    </span>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="masthead-brand">
+      <div class="crest" aria-hidden="true">
+        <svg viewBox="0 0 64 64" width="46" height="46">
+          <circle cx="32" cy="32" r="30" fill="none" stroke="#c8a04b" stroke-width="2.5"/>
+          <circle cx="32" cy="32" r="24" fill="#0b2e5c"/>
+          <path d="M32 14 L40 24 L36 24 L36 42 L28 42 L28 24 L24 24 Z" fill="#c8a04b"/>
+          <rect x="20" y="44" width="24" height="3" fill="#c8a04b"/>
+        </svg>
+      </div>
+      <div class="masthead-text">
+        <div class="masthead-title">MeridianConnect</div>
+        <div class="masthead-subtitle">Meridian Talent Group &mdash; Staff Portal</div>
+      </div>
+    </div>
+    {% if user %}
+    <div class="masthead-user">
+      <div class="masthead-user-name">{{ user['full_name'] }}</div>
+      <div class="masthead-user-role">{{ user['department'] }}</div>
+    </div>
+    {% endif %}
+  </div>
+</header>
+
+<nav class="mainnav">
+  <div class="mainnav-inner">
+    {% if user %}
+      <a href="/dashboard" class="{{ 'active' if request.path == '/dashboard' }}">Home</a>
+      <a href="/directory" class="{{ 'active' if request.path == '/directory' }}">Staff Directory</a>
+      <a href="/docs" class="{{ 'active' if request.path.startswith('/docs') }}">Documents &amp; Policies</a>
+      <a href="/profile" class="{{ 'active' if request.path == '/profile' }}">My Profile</a>
+      {% if user['role'] in ('admin', 'hr_admin') %}
+      <a href="/admin" class="{{ 'active' if request.path.startswith('/admin') }}">System Administration</a>
+      {% endif %}
+      <a href="/logout" class="nav-right">Log Out</a>
+    {% else %}
+      <a href="/login" class="{{ 'active' if request.path == '/login' }}">Log In</a>
+      <a href="/register" class="{{ 'active' if request.path == '/register' }}">Register</a>
+    {% endif %}
+  </div>
+</nav>
+
+<main class="container">
+{% block content %}{% endblock %}
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-col">
+      <strong>MERIDIAN TALENT GROUP</strong><br>
+      Level 22, Meridian Tower,<br>
+      Jalan Ampang, 50450 Kuala Lumpur, Malaysia
+    </div>
+    <div class="footer-col">
+      <strong>QUICK LINKS</strong><br>
+      <a href="/">Home</a> &middot;
+      <a href="/docs">Documents</a> &middot;
+      <a href="/directory">Directory</a>
+    </div>
+    <div class="footer-col">
+      <strong>NOTICE</strong><br>
+      This system is for authorized staff use only. Unauthorized access
+      is prohibited and may be subject to disciplinary and/or legal action.
+    </div>
+  </div>
+  <div class="site-footer-bottom">
+    &copy; 2026 Meridian Talent Group. Security Training Portal &mdash; Local Test Environment Only.
+  </div>
+</footer>
+
+</body>
+</html>
